@@ -32,7 +32,7 @@ def resolve_linker_script(env):
     linker_scripts = dict(
         asb=env.subst("$ASB_LINKER_SCRIPT"),
         svl=env.subst("$SVL_LINKER_SCRIPT"),
-        jlink=env.subst("$SVL_LINKER_SCRIPT"),
+        jlink=env.subst("$ASB_LINKER_SCRIPT"),
     )
 
     if len(user_linker_script_fn) == 0:

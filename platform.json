@@ -21,6 +21,10 @@
     "ambiqsdk-sfe": {
       "package": "framework-ambiqsuitesdkapollo3-sfe",
       "script": "builder/frameworks/ambiqsuitesdk-sfe.py"
+    },
+    "ambiqsdk": {
+      "package": "framework-ambiqsuitesdkapollo3",
+      "script": "builder/frameworks/ambiqsuitesdk.py"
     }
   },
   "packages": {
@@ -39,6 +43,11 @@
       "type": "framework",
       "optional": true,
       "version": ">=2.4.0"
+    },
+    "framework-ambiqsuitesdkapollo3": {
+      "type": "framework",
+      "optional": true,
+      "version": ">=3.0.0"
     },
     "tool-jlink": {
       "type": "uploader",

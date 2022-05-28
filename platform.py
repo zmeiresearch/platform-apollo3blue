@@ -57,6 +57,8 @@ class Apollo3bluePlatform(PlatformBase):
             self.packages["framework-arduinoapollo3"]["optional"] = False
         elif "ambiqsdk-sfe" in variables.get("pioframework", []):
             self.packages["framework-ambiqsuitesdkapollo3-sfe"]["optional"] = False
+        elif "ambiqsdk" in variables.get("pioframework", []):
+            self.packages["framework-ambiqsuitesdkapollo3"]["optional"] = False
 
         if any([x in targets for x in ["jlink_swo", "jlink_rtt"]]):
             self.packages["tool-jlink"]["optional"] = False
