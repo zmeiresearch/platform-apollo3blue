@@ -52,6 +52,17 @@ if not upload_protocol.startswith("jlink"):
         UPLOADER=uploader,
     )
 
+upload_address = ""
+if upload_protocol == "svl":
+    upload_address = "0x10000"
+elif upload_protocol == "asb":
+    upload_address = "0xC000"
+elif upload_protocol == "jlink":
+    upload_address = "0x10000"
+user_upload_address = board.get("build.upload.address", "").strip()
+if len(user_upload_address) > 0:
+    upload_address = user_upload_address
+env.Replace(UPLOAD_ADDRESS=upload_address)
 
 env.Append(
     ASFLAGS=[
@@ -82,7 +93,7 @@ env.Append(
         "-mthumb", "-mcpu=%s"%board.get("build.cpu"), "-mfpu=fpv4-sp-d16", "-mfloat-abi=%s"%board.get("build.fabi"),
         "-nostartfiles", "-static",
         "-Wl,--gc-sections,--entry,Reset_Handler,-Map,%s"% join("$BUILD_DIR", "program.map"),
-        "-Wl,-T%s"%join(FRAMEWORK_DIR, "boards_sfe","common","tools_sfe", "templates", "asb_svl_linker.ld")
+        "-Wl,-T%s"%env.subst(env.subst("$LDSCRIPT_PATH"))
     ],
 )
 
